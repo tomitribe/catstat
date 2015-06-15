@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
+/*
  * Licensed to the Apache Software Foundation (ASF) under one or more
  * contributor license agreements.  See the NOTICE file distributed with
  * this work for additional information regarding copyright ownership.
@@ -14,11 +13,29 @@
  *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
--->
-<beans xmlns="http://java.sun.com/xml/ns/javaee"
-       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/beans_1_0.xsd">
-    <interceptors>
-        <class>org.tomitribe.jeewiz.metrics.interceptors.MetricInterceptor</class>
-    </interceptors>
-</beans>
+ */
+package org.tomitribe.jeewiz.web;
+
+import org.jboss.arquillian.junit.InSequence;
+import org.junit.Assert;
+import org.junit.BeforeClass;
+import org.junit.Test;
+
+
+/**
+ * @author WalmartLabs
+ * @author Ryan McGuinness [rmcguinness@walmartlabs.com]
+ *         Created: 6/7/15
+ */
+public class SimpleTest extends ArquillianTest {
+    @BeforeClass
+    public static void setSystemVariable() {
+        System.setProperty("runOnEnv", "dev");
+    }
+
+    @Test
+    @InSequence(0)
+    public void testArchive() {
+        Assert.assertEquals("dev", System.getProperty("runOnEnv"));
+    }
+}

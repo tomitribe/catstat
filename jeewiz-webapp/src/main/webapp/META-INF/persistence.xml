@@ -30,10 +30,9 @@
         <provider>org.hibernate.ejb.HibernatePersistence</provider>
 
         <!-- Add your Entity classes below -->
-        <class>example.model.Account</class>
-        <class>example.model.Role</class>
-        <class>example.model.Image</class>
-        <class>example.model.Item</class>
+        <class>org.tomitribe.jeewiz.web.model.Account</class>
+        <class>org.tomitribe.jeewiz.web.model.Role</class>
+        <class>org.tomitribe.jeewiz.web.model.Image</class>
 
         <exclude-unlisted-classes>false</exclude-unlisted-classes>
 
@@ -44,7 +43,7 @@
 
             <!-- Change the driver / UID / PWD information -->
             <property name="hibernate.connection.driver_class" value="org.hsqldb.jdbcDriver"/>
-            <property name="hibernate.connection.url" value="jdbc:hsqldb:mem:example"/>
+            <property name="hibernate.connection.url" value="jdbc:hsqldb:mem:jeewiz"/>
             <property name="hibernate.connection.username" value="sa"/>
             <property name="hibernate.connection.password" value=""/>
             

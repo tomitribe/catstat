@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
+/*
  * Licensed to the Apache Software Foundation (ASF) under one or more
  * contributor license agreements.  See the NOTICE file distributed with
  * this work for additional information regarding copyright ownership.
@@ -14,11 +13,12 @@
  *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
--->
-<beans xmlns="http://java.sun.com/xml/ns/javaee"
-       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/beans_1_0.xsd">
-    <interceptors>
-        <class>org.tomitribe.jeewiz.metrics.interceptors.MetricInterceptor</class>
-    </interceptors>
-</beans>
+ */
+
+INSERT INTO PUBLIC.ROLE(ID, RL_NM, NM, DSCR) values (10, 'ROLE_ADMIN', 'Administrator', 'Allows the user to administer other users');
+INSERT INTO PUBLIC.ROLE(ID, RL_NM, NM, DSCR) values (20, 'ROLE_USER', 'User', 'Basic access to recipe book resources');
+
+INSERT INTO PUBLIC.ACCT (ID, DT_CR, DT_LM, VER, ENBLD, CRD_EXP, LCKD, EXP, PWD, USR_NM, EMAIL ) VALUES ('4028808544e2f9700144e2f98e070000', NOW(), NOW(),0,'Y','N','N','N','ac9689e2272427085e35b9d3e3e8bed88cb3434828b43b86fc0596cad4c6e270','admin', 'admin@jeewiz.com');
+
+INSERT INTO PUBLIC.ACCT_ROLE(ACCT_ID, ROLE_ID) VALUES ('4028808544e2f9700144e2f98e070000', 10);
+INSERT INTO PUBLIC.ACCT_ROLE(ACCT_ID, ROLE_ID) VALUES ('4028808544e2f9700144e2f98e070000', 20);
