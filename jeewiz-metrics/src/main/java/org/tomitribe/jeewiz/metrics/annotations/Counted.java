@@ -14,12 +14,25 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package org.tomitribe.jeewiz;
+package org.tomitribe.jeewiz.metrics.annotations;
 
-public class Foo {
+import java.lang.annotation.Retention;
+import java.lang.annotation.Target;
 
-    @Override
-    public String toString() {
-        return super.toString();
-    }
+import static java.lang.annotation.ElementType.CONSTRUCTOR;
+import static java.lang.annotation.ElementType.METHOD;
+import static java.lang.annotation.RetentionPolicy.RUNTIME;
+
+/**
+ * @author WalmartLabs
+ * @author Tomitribe
+ * @author Ryan McGuinness [rmcguinness@walmartlabs.com]
+ *         Created: 5/18/15
+ */
+@Retention(RUNTIME)
+@Target({METHOD, CONSTRUCTOR})
+public @interface Counted {
+    String name() default "";
+    boolean absolute() default false;
+    boolean monotonic() default false;
 }
