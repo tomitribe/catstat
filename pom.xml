@@ -211,6 +211,7 @@
                         <lib>remove:serp</lib>
                         <lib>remove:openjpa</lib>
 
+                        <lib>remove:commons-lang</lib>
                         <lib>remove:myfaces</lib>
                         <lib>remove:javax.faces</lib>
                         <lib>remove:tomee-myfaces</lib>
@@ -218,7 +219,13 @@
                         <lib>javax.cache:cache-api:1.0.0</lib>
                         <lib>org.javassist:javassist:3.19.0-GA</lib>
 
+                        <lib>com.google.code.gson:gson:2.3.1</lib>
+
                         <lib>com.sun.faces:jsf-api:2.2.11</lib>
+
+                        <lib>commons-lang:commons-lang:2.6</lib>
+                        <lib>org.apache.commons:commons-lang3:3.3.2</lib>
+
                         <lib>com.sun.faces:jsf-impl:2.2.11</lib>
 
                         <lib>org.primefaces:primefaces:5.2</lib>

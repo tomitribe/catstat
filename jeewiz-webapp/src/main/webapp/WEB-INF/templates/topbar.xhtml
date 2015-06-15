@@ -1,0 +1,45 @@
+<ui:composition
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:h="http://java.sun.com/jsf/html"
+        xmlns:ui="http://java.sun.com/jsf/facelets">
+    <!--
+ * Licensed to the Apache Software Foundation (ASF) under one or more
+ * contributor license agreements.  See the NOTICE file distributed with
+ * this work for additional information regarding copyright ownership.
+ * The ASF licenses this file to You under the Apache License, Version 2.0
+ * (the "License"); you may not use this file except in compliance with
+ * the License.  You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an "AS IS" BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License.
+-->
+    <div id="layout-header" class="Unselectable fontRegular">
+        <a href="dashboard.xhtml" id="layout-logo">
+            <h:graphicImage name="images/tomitribe_logo.png" styleClass="Fleft" library="tomitribe"/>
+            <span class="Fs19 FontTitilliumSemiBoldItalic Fleft"><span
+                    class="softblue">@Platform Dashboard - </span><span class="hardblue"> Example</span></span>
+        </a>
+        <ul id="sm-topmenu" class="layout-header-widgets white Fs14 MustResponsive">
+            <li class="Fleft BordRadHalf TexAlCenter"><i class="icon-user-male"></i>
+                <ul class="layout-header-widgets-submenu BordRad5 shadows white Animated05">
+                    <li class="Animated05"><a class="white Unselectable"><i
+                            class="icon-user-male Fs26 OvHidden"></i><span class="Fs18">Users Name<br/><span
+                            class="Fs10">Last Login - 18.08.2014</span></span></a></li>
+                    <li class="Animated05"><a href="login.xhtml" class="white Unselectable"><i
+                            class="icon-stopwatch-1"></i>Login</a></li>
+                </ul>
+            </li>
+        </ul>
+        <!-- NEVER REMOVE FOLLOWING 'UL' TAG ! BECAUSE THIS CONTAINS RESPONSIVE MODE HEADER MENU OPEN-CLOSE BUTTON -->
+        <ul class="layout-header-widgets white Fs14">
+            <li class="Fleft BordRadHalf TexAlCenter Animated05 DisplayOnResponsive NoDisplay"
+                id="ResponsiveModeOneMenu"><i class="icon-th-1"></i></li>
+        </ul>
+        <!-- ****** -->
+    </div>
+</ui:composition>
