@@ -15,3 +15,25 @@
  *  limitations under the License.
 ////
 = Overview
+
+== Prerequisites
+
+* Ensure you have Java
+* Ensure you have Maven
+* Ensure your environment is setup correctly
+
+== How to build
+
+1. From the parent project execute: mvn package install
+2. cd jeewiz-webapp
+3. mvn tomee:build
+4. mvn tomee:run
+
+== Viewing
+
+1. Open a web browser
+2. Use the following URL: http://localhost:8080/jeewiz/
+3. Review the basic metrics: http://localhost:8080/jeewiz/metrics/
+4. Login: http://localhost:8080/jeewiz/login.xhtml
+5. Review the metrics again: http://localhost:8080/jeewiz/metrics/
+
