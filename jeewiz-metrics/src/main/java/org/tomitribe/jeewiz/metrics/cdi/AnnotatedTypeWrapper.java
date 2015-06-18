@@ -30,8 +30,8 @@ import java.util.Set;
  * @author Tomitribe
  * @author Ryan McGuinness [rmcguinness@walmartlabs.com]
  *         Created: 5/18/15
- *
- * <p>Provides a wrapper class for decorating existing clases with new annotations.</p>
+ *         <p>
+ *         <p>Provides a wrapper class for decorating existing clases with new annotations.</p>
  */
 public class AnnotatedTypeWrapper<T> implements AnnotatedType<T> {
 

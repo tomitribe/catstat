@@ -276,6 +276,19 @@
                     </execution>
                 </executions>
             </plugin>
+            <plugin>
+                <groupId>org.apache.rat</groupId>
+                <artifactId>apache-rat-plugin</artifactId>
+                <configuration>
+                    <excludes>
+                        <exclude>**/*.adoc</exclude>
+                        <exclude>**/*.js</exclude>
+                        <exclude>**/*.css</exclude>
+                        <exclude>**/*.txt</exclude>
+                        <exclude>**/pom.xml</exclude>
+                    </excludes>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
 

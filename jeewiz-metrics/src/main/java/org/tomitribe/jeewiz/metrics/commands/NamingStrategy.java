@@ -5,6 +5,7 @@ import javax.interceptor.InvocationContext;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.lang.reflect.Proxy;
 
 import static com.codahale.metrics.MetricRegistry.name;
 
@@ -41,7 +42,7 @@ public interface NamingStrategy {
         } catch (NoSuchMethodException | InvocationTargetException | IllegalAccessException nme) {
             annotationName = annotation.annotationType().getName();
         }
-        return name(context.getClass(), context.getMethod().getName(), annotationName);
+        return name(annotation.annotationType().getSimpleName(), context.getMethod().getName(), annotationName);
     }
     default String getName(Class<?> clazz, String... names) {
         return name(clazz, names);

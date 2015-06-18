@@ -1,6 +1,8 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:ui="http://java.sun.com/jsf/facelets"
                 xmlns:p="http://primefaces.org/ui"
+                xmlns:c="http://java.sun.com/jstl/core"
+                xmlns:h="http://java.sun.com/jsf/html"
                 template="/WEB-INF/templates/template.xhtml">
     <!--
      * Licensed to the Apache Software Foundation (ASF) under one or more
@@ -23,45 +25,19 @@
     </ui:define>
 
     <ui:define name="content">
-
-        <div class="Container100">
-            <div class="ContainerIndent">
-                <div class="EmptyBox20"></div>
-
-                <div class="Container25 Responsive">
-                    <div class="ContainerIndent">
-                        <p:panel style="min-height: 300px;">
-                            P1
-
-                        </p:panel>
-                    </div>
-                </div>
-
-                <div class="Container25 Responsive">
-                    <div class="ContainerIndent">
-                        <p:panel style="min-height: 300px;">
-                            P2
-                        </p:panel>
-                    </div>
-                </div>
-
-                <div class="Container25 Responsive">
-                    <div class="ContainerIndent">
-                        <p:panel style="min-height: 300px;">
-                            P3
-                        </p:panel>
-                    </div>
-                </div>
-
-                <div class="Container25 Responsive">
-                    <div class="ContainerIndent">
-                        <p:panel style="min-height:300px">
-                            P4
-                        </p:panel>
-                    </div>
-                </div>
-                <div class="EmptyBox10"></div>
+        <h:form>
+        <p:panel>
+            <div style="width: 410px; float:left">
+            <p:chart type="metergauge"
+                     model="#{dashboardController.meterGaugeChartModel}"
+                     style="width:400px;height:250px;" responsive="true"/>
             </div>
-        </div>
+            <c:if test="${request.userPrincipal != null}">
+                <p:poll interval="3" update="logins" />
+                <p:chart id="logins" type="line" model="#{dashboardController.lineChartModel}" style="height:300px;" responsive="true"/>
+            </c:if>
+
+        </p:panel>
+        </h:form>
     </ui:define>
 </ui:composition>

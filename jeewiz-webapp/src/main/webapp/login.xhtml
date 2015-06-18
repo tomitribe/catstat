@@ -3,49 +3,50 @@
                 xmlns:ui="http://java.sun.com/jsf/facelets"
                 xmlns:p="http://primefaces.org/ui"
                 template="/WEB-INF/templates/template.xhtml">
-<!--
- * Licensed to the Apache Software Foundation (ASF) under one or more
- * contributor license agreements.  See the NOTICE file distributed with
- * this work for additional information regarding copyright ownership.
- * The ASF licenses this file to You under the Apache License, Version 2.0
- * (the "License"); you may not use this file except in compliance with
- * the License.  You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- *  Unless required by applicable law or agreed to in writing, software
- *  distributed under the License is distributed on an "AS IS" BASIS,
- *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *  See the License for the specific language governing permissions and
- *  limitations under the License.
--->
+    <!--
+     * Licensed to the Apache Software Foundation (ASF) under one or more
+     * contributor license agreements.  See the NOTICE file distributed with
+     * this work for additional information regarding copyright ownership.
+     * The ASF licenses this file to You under the Apache License, Version 2.0
+     * (the "License"); you may not use this file except in compliance with
+     * the License.  You may obtain a copy of the License at
+     *
+     *     http://www.apache.org/licenses/LICENSE-2.0
+     *
+     *  Unless required by applicable law or agreed to in writing, software
+     *  distributed under the License is distributed on an "AS IS" BASIS,
+     *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     *  See the License for the specific language governing permissions and
+     *  limitations under the License.
+    -->
     <ui:define name="content">
         <h:form>
-            <div class="Container80 MaxWid500 white-back Fnone MarAuto BordRad10 MarTop10" id="login-box">
-                <div class="container100">
-                    <div class="Container100 TexAlCenter Animated05 BoxSizeBorder TabBtn left TabBtnActiveLeft">
-                        <div class="Container100 Fnone MarAuto FontBold"><i class="icon-lock"></i> Login</div>
-                    </div>
-                    <p:growl id="g" showDetail="true"/>
+            <p:growl id="g" showDetail="true"/>
 
-                    <div class="Container90 Fnone MarAuto TexAlCenter TabContent" id="TAB1">
-                        <div class="EmptyBox10"></div>
-                        <p:inputText styleClass="Container80 Fnone MarAuto Fs18" binding="#{ username }"
-                                     placeholder="User Name"/>
+            <p:panel style="width: 400px; margin-left: auto; margin-right: auto; text-align: center;">
+                <div style="width: 350px; text-align: center;">
+                    <p:inputText style="width: 340px; color: blue;" binding="#{username}" placeholder="User Name"/>
+                    <br/><br/>
 
-                        <div class="EmptyBox10"></div>
-                        <p:password styleClass="Container80 Fnone MarAuto Fs18" binding="#{ password }"
-                                    placeholder="Password"/>
 
-                        <div class="EmptyBox10"></div>
-                        <p:commandButton actionListener="#{loginController.login(username.value, password.value)}" update="g"
-                                         value="Login"/>
+                    <p:password style="width: 340px; color: blue;" binding="#{password}" placeholder="Password"/>
+                    <br/><br/>
+
+                    <div align="right">
+                        <p:commandButton actionListener="#{loginController.login(username.value, password.value)}"
+                                         update="g"
+                                         value="Login" style="margin: 0;"/>
+
                     </div>
                 </div>
+            </p:panel>
+
+            <div style="width: 100%">
                 <div class="EmptyBox10"></div>
                 <div class="Container90 MarAuto">
                     <div class="Container100">Username &amp; Password:</div>
-                    <div class="Container50">Administrator:</div><div class="Container50">admin / admin1234</div>
+                    <div class="Container50">Administrator:</div>
+                    <div class="Container50">admin / admin1234</div>
                 </div>
             </div>
         </h:form>

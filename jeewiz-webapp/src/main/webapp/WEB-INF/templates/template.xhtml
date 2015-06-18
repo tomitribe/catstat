@@ -36,20 +36,21 @@
             .ui-tabs-top .ui-tabs-nav li,
             .ui-tabs .ui-tabs-nav li{margin-bottom: 0px !important;}
         </style>
+        <h:outputStylesheet library="tomitribe" name="theme.css" />
         <h:outputText value="&lt;![endif]--&gt;" escape="false" />
-
         <ui:insert name="head" />
     </h:head>
 
-    <h:body>
+    <h:body styleClass="home page page-template page-template-page_home-php">
         <ui:include src="topbar.xhtml" />
-        <ui:include src="leftmenu.xhtml" />
         <div id="layout-portlets-cover" class="fontRegular">
             <ui:insert name="content">
                 Template
             </ui:insert>
         </div>
-        <div id="footer" class="MarAuto"><h:outputText escape="false" value="&#169;" /><p:outputLabel value="#{app['app.footer']}" /></div>
+        <footer>
+            <h:outputText escape="false" value="&#169;" /><p:outputLabel value="#{app['app.footer']}" />
+        </footer>
     </h:body>
 </f:view>
 </html>

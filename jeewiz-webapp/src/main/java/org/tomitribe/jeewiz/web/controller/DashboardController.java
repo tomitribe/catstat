@@ -16,16 +16,23 @@
  */
 package org.tomitribe.jeewiz.web.controller;
 
+import com.codahale.metrics.MetricRegistry;
+import org.apache.commons.lang3.StringUtils;
 import org.primefaces.model.chart.Axis;
 import org.primefaces.model.chart.AxisType;
-import org.primefaces.model.chart.LegendPlacement;
+import org.primefaces.model.chart.ChartSeries;
+import org.primefaces.model.chart.DonutChartModel;
 import org.primefaces.model.chart.LineChartModel;
-import org.primefaces.model.chart.LineChartSeries;
-import org.primefaces.model.chart.PieChartModel;
+import org.primefaces.model.chart.MeterGaugeChartModel;
+import org.tomitribe.jeewiz.metrics.qualifiers.QMetricRegistry;
+import org.tomitribe.jeewiz.web.ejb.TemporalCollector;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author WalmartLabs
@@ -35,63 +42,66 @@ import javax.inject.Named;
 @Named
 @RequestScoped
 public class DashboardController {
+    private MeterGaugeChartModel meterGaugeChartModel;
+    private LineChartModel lineChartModel;
 
-    private LineChartModel lineModel;
-    private PieChartModel pieModel;
+    @Inject
+    private TemporalCollector collector;
+
+    @Inject
+    @QMetricRegistry
+    private MetricRegistry metricRegistry;
 
     @PostConstruct
     public void init() {
-        initLinearModel();
-        initPieModel();
-    }
+        meterGaugeChartModel = new MeterGaugeChartModel();
 
-    public LineChartModel getLineModel() {
-        return lineModel;
-    }
+        long maxMemory = Long.parseLong(metricRegistry.getGauges().get("jvm.memory.total.max").getValue().toString());
+        long currenUsed = Long.parseLong(metricRegistry.getGauges().get("jvm.memory.total.used").getValue().toString());
 
-    public PieChartModel getPieModel() {
-        return pieModel;
-    }
+        double usedMB = (currenUsed/1024)/1024;
+        double maxMB = (maxMemory/1024)/1024;
+        double max90 = maxMB*.9;
+        double max80 = maxMB*.8;
+        double max70 = maxMB*.7;
+        List<Number> intervals = new ArrayList<Number>(){{
+            add(max70);
+            add(max80);
+            add(max90);
+            add(maxMB);
+        }};
+        meterGaugeChartModel = new MeterGaugeChartModel(100, intervals);
 
-    private void initLinearModel() {
-        lineModel = new LineChartModel();
-        lineModel.setTitle("Linear Chart");
-        lineModel.setLegendPosition("e");
-        lineModel.setAnimate(true);
-        Axis yAxis = lineModel.getAxis(AxisType.Y);
+        meterGaugeChartModel.setTitle("JVM Memory");
+        meterGaugeChartModel.setSeriesColors("66cc66,93b75f,E7E658,cc6666");
+        meterGaugeChartModel.setGaugeLabel("Memory Used");
+        meterGaugeChartModel.setGaugeLabelPosition("bottom");
+        meterGaugeChartModel.setShadow(true);
+        meterGaugeChartModel.setShowTickLabels(false);
+        meterGaugeChartModel.setLabelHeightAdjust(110);
+        meterGaugeChartModel.setIntervalOuterRadius(100);
+
+        meterGaugeChartModel.setValue(usedMB);
+
+        lineChartModel = new LineChartModel();
+        lineChartModel.setTitle("Linear Chart");
+        lineChartModel.setLegendPosition("e");
+        Axis yAxis = lineChartModel.getAxis(AxisType.Y);
         yAxis.setMin(0);
-        yAxis.setMax(10);
+        yAxis.setMax(20);
 
-        LineChartSeries series1 = new LineChartSeries();
-        series1.setLabel("Series 1");
-
-        series1.set(1, 2);
-        series1.set(2, 1);
-        series1.set(3, 3);
-        series1.set(4, 6);
-        series1.set(5, 8);
-
-        LineChartSeries series2 = new LineChartSeries();
-        series2.setLabel("Series 2");
-
-        series2.set(1, 6);
-        series2.set(2, 3);
-        series2.set(3, 2);
-        series2.set(4, 7);
-        series2.set(5, 9);
-
-        lineModel.addSeries(series1);
-        lineModel.addSeries(series2);
+        ChartSeries series = new ChartSeries("Login/min");
+        for (int i=0;i<collector.getValues().size(); i++) {
+            series.set(i, collector.getValues().get(i));
+        }
+        lineChartModel.addSeries(series);
     }
 
-    private void initPieModel() {
-        pieModel = new PieChartModel();
-        pieModel.set("Walmart", 540);
-        pieModel.set("Walmex", 325);
-        pieModel.set("ASDA", 702);
-        pieModel.set("Sam's Club", 421);
-        pieModel.setLegendPlacement(LegendPlacement.INSIDE);
-        pieModel.setShadow(true);
-        pieModel.setShowDataLabels(true);
+    public MeterGaugeChartModel getMeterGaugeChartModel() {
+        return meterGaugeChartModel;
+    }
+
+    public LineChartModel getLineChartModel() {
+        return lineChartModel;
     }
 }
