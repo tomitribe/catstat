@@ -35,6 +35,11 @@
     </context-param>
     
     <context-param>
+        <param-name>primefaces.FONT_AWESOME</param-name>
+        <param-value>true</param-value>
+    </context-param>
+    
+    <context-param>
         <param-name>com.sun.faces.COMPRESS_STATE</param-name>
         <param-value>true</param-value>
     </context-param>
