@@ -20,30 +20,21 @@
  *  limitations under the License.
 -->
     <header class="banner navbar navbar-default navbar-static-top" role="banner">
-        <div id="layout-header" class="container-non-responsive">
-            <div class="navbar-header fontRegular">
-                <a class="navbar-brand" href="${request.contextPath}/dashboard.xhtml"><h:graphicImage
-                        name="images/tomitribe_logo.png" styleClass="Fleft" library="tomitribe"/></a>
+        <div class="navbar-header fontRegular">
+            <a class="navbar-brand" href="${request.contextPath}/dashboard.xhtml"><h:graphicImage
+                    name="images/tomitribe_logo.png" styleClass="Fleft" library="tomitribe"/></a>
 
-                <div style="float: right">
+            <div style="float: right">
                 <span class="Fs19 FontTitilliumSemiBoldItalic" style="font-size: 24pt; font-weight: bolder"><span
                         class="softblue">JeeWiz - </span><span class="hardblue"> Example Application</span></span>
-                </div>
             </div>
-            <h:form id="mainMemnu">
-                <p:menubar>
-                    <p:menuitem action="dashboard" value="Dashboard"/>
-                    <p:menuitem action="login" value="Login" ajax="false"/>
-                    <p:menuitem url="/metrics" value="Raw Metrics" />
-                    <p:menuitem url="/rs/accounts/v1?_wadl" value="Accounts WADL" />
-                </p:menubar>
-            </h:form>
-            <!-- NEVER REMOVE FOLLOWING 'UL' TAG ! BECAUSE THIS CONTAINS RESPONSIVE MODE HEADER MENU OPEN-CLOSE BUTTON -->
-            <ul class="layout-header-widgets white Fs14">
-                <li class="Fleft BordRadHalf TexAlCenter Animated05 DisplayOnResponsive NoDisplay"
-                    id="ResponsiveModeOneMenu"><i class="icon-th-1"></i></li>
-            </ul>
-            <!-- ****** -->
         </div>
+        <h:form>
+            <p:commandButton action="dashboard" value="Dashboard" icon="fa fa-dashboard" />
+            <p:commandButton action="login" value="Login" icon="fa fa-key" />
+            <p:commandButton action="/metrics" icon="fa fa-line-chart" value="Metrics"/>
+            <p:commandButton action="/rs/accounts/v1?_wadl" icon="fa fa-gear" value="Accounts WADL" />
+        </h:form>
+        <p:spacer height="5" />
     </header>
 </ui:composition>

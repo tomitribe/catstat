@@ -143,6 +143,15 @@
         <module>jeewiz-webapp</module>
     </modules>
 
+    <repositories>
+        <repository>
+            <id>pf</id>
+            <name>primefaces</name>
+            <url>http://repository.primefaces.org/</url>
+            <layout>default</layout>
+        </repository>
+    </repositories>
+
     <build>
         <plugins>
             <plugin>

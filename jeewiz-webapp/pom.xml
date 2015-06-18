@@ -48,6 +48,12 @@
         </dependency>
 
         <dependency>
+            <groupId>org.primefaces.themes</groupId>
+            <artifactId>bootstrap</artifactId>
+            <version>1.0.10</version>
+        </dependency>
+
+        <dependency>
             <groupId>org.primefaces.extensions</groupId>
             <artifactId>primefaces-extensions</artifactId>
             <version>3.0.0</version>
@@ -58,6 +64,13 @@
             <groupId>org.primefaces.extensions</groupId>
             <artifactId>resources-codemirror</artifactId>
             <version>3.0.0</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.hazelcast</groupId>
+            <artifactId>hazelcast-all</artifactId>
+            <version>3.4.2</version>
             <scope>provided</scope>
         </dependency>
 

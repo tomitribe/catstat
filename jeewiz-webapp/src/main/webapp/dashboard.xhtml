@@ -1,7 +1,6 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:ui="http://java.sun.com/jsf/facelets"
                 xmlns:p="http://primefaces.org/ui"
-                xmlns:c="http://java.sun.com/jstl/core"
                 xmlns:h="http://java.sun.com/jsf/html"
                 template="/WEB-INF/templates/template.xhtml">
     <!--
@@ -21,23 +20,47 @@
      *  limitations under the License.
     -->
     <ui:define name="head">
-
+        <script type="text/javascript">
+            function customExtender() {
+                this.cfg.grid = {
+                    grid: {
+                        drawGridLines: false,        // wether to draw lines across the grid or not.
+                        gridLineColor: '#cccccc',    // *Color of the grid lines.
+                        background: '#fffdf6',      // CSS color spec for background color of grid.
+                        borderColor: '#999999',     // CSS color spec for border around grid.
+                        borderWidth: 2.0,           // pixel width of border around grid.
+                        shadow: true,               // draw a shadow for grid.
+                        shadowAngle: 45,            // angle of the shadow.  Clockwise from x axis.
+                        shadowOffset: 1.5,          // offset from the line of the shadow.
+                        shadowWidth: 3,             // width of the stroke for the shadow.
+                        shadowDepth: 3,             // Each stroke offset by shadowOffset from the last.
+                        shadowAlpha: 0.07,           // Opacity of the shadow
+                        renderer: $.jqplot.CanvasGridRenderer,  // renderer to use to draw the grid.
+                        rendererOptions: {}         // options to pass to the renderer.  Note, the default
+                                                    // CanvasGridRenderer takes no additional options.
+                    }
+                }
+            }
+        </script>
     </ui:define>
 
     <ui:define name="content">
         <h:form>
-        <p:panel>
-            <div style="width: 410px; float:left">
-            <p:chart type="metergauge"
-                     model="#{dashboardController.meterGaugeChartModel}"
-                     style="width:400px;height:250px;" responsive="true"/>
-            </div>
-            <c:if test="${request.userPrincipal != null}">
-                <p:poll interval="3" update="logins" />
-                <p:chart id="logins" type="line" model="#{dashboardController.lineChartModel}" style="height:300px;" responsive="true"/>
-            </c:if>
+            <p:panel>
+                <p:poll interval="6" update="jvm"/>
+                <p:chart id="jvm" type="metergauge"
+                         model="#{dashboardController.meterGaugeChartModel}"
+                         style="width:400px;height:250px;"/>
+            </p:panel>
+            <p:spacer height="5" />
+            <p:panel rendered="#{request.userPrincipal != null}">
+                <p:poll interval="6" update="logins"/>
+                <p:chart id="logins"
+                         type="line"
+                         model="#{dashboardController.lineChartModel}"
+                         style="height:250px;" />
 
-        </p:panel>
+            </p:panel>
         </h:form>
     </ui:define>
 </ui:composition>

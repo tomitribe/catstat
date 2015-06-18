@@ -29,19 +29,17 @@
             <meta name="apple-mobile-web-app-capable" content="yes" />
         </f:facet>
         <title>JeeWiz - Example Application</title>
-        <h:outputScript name="jquery/jquery.js" library="primefaces" />
 
         <h:outputText value="&lt;!--[if gte IE 9]&gt;" escape="false" />
         <style type="text/css">
             .ui-tabs-top .ui-tabs-nav li,
             .ui-tabs .ui-tabs-nav li{margin-bottom: 0px !important;}
         </style>
-        <h:outputStylesheet library="tomitribe" name="theme.css" />
         <h:outputText value="&lt;![endif]--&gt;" escape="false" />
         <ui:insert name="head" />
     </h:head>
 
-    <h:body styleClass="home page page-template page-template-page_home-php">
+    <h:body>
         <ui:include src="topbar.xhtml" />
         <div id="layout-portlets-cover" class="fontRegular">
             <ui:insert name="content">

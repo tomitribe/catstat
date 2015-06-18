@@ -17,11 +17,9 @@
 package org.tomitribe.jeewiz.web.controller;
 
 import com.codahale.metrics.MetricRegistry;
-import org.apache.commons.lang3.StringUtils;
 import org.primefaces.model.chart.Axis;
 import org.primefaces.model.chart.AxisType;
 import org.primefaces.model.chart.ChartSeries;
-import org.primefaces.model.chart.DonutChartModel;
 import org.primefaces.model.chart.LineChartModel;
 import org.primefaces.model.chart.MeterGaugeChartModel;
 import org.tomitribe.jeewiz.metrics.qualifiers.QMetricRegistry;
@@ -74,10 +72,6 @@ public class DashboardController {
 
         meterGaugeChartModel.setTitle("JVM Memory");
         meterGaugeChartModel.setSeriesColors("66cc66,93b75f,E7E658,cc6666");
-        meterGaugeChartModel.setGaugeLabel("Memory Used");
-        meterGaugeChartModel.setGaugeLabelPosition("bottom");
-        meterGaugeChartModel.setShadow(true);
-        meterGaugeChartModel.setShowTickLabels(false);
         meterGaugeChartModel.setLabelHeightAdjust(110);
         meterGaugeChartModel.setIntervalOuterRadius(100);
 
@@ -86,9 +80,12 @@ public class DashboardController {
         lineChartModel = new LineChartModel();
         lineChartModel.setTitle("Linear Chart");
         lineChartModel.setLegendPosition("e");
+        lineChartModel.setExtender("customExtender");
+
+
         Axis yAxis = lineChartModel.getAxis(AxisType.Y);
         yAxis.setMin(0);
-        yAxis.setMax(20);
+        yAxis.setMax(50);
 
         ChartSeries series = new ChartSeries("Login/min");
         for (int i=0;i<collector.getValues().size(); i++) {

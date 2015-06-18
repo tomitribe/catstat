@@ -20,6 +20,7 @@ import com.codahale.metrics.MetricRegistry;
 import org.tomitribe.jeewiz.metrics.qualifiers.QMetricRegistry;
 import org.tomitribe.jeewiz.web.services.AccountService;
 
+import javax.annotation.PostConstruct;
 import javax.ejb.Schedule;
 import javax.ejb.Singleton;
 import javax.ejb.Startup;
@@ -48,7 +49,12 @@ public class TemporalCollector {
     @Inject
     private AccountService accountService;
 
-    @Schedule(second = "*/5", minute = "*", hour = "*")
+    @PostConstruct
+    public void init() {
+        syntheticLogin();
+    }
+
+    @Schedule(second = "*/45", minute = "*", hour = "*")
     public void syntheticLogin() {
         Random r = new Random();
         int max = r.nextInt(20);
@@ -57,7 +63,7 @@ public class TemporalCollector {
         }
     }
 
-    @Schedule(second = "*", minute = "*/1", hour = "*")
+    @Schedule(second = "0", minute = "*/1", hour = "*")
     public void update() {
         long cCount = metricRegistry.getCounters().get("Counted.findAccountByUsernameAndPassword.find-account-counted").getCount();
         values.add(cCount);
