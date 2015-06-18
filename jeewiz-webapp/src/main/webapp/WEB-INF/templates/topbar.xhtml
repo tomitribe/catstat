@@ -2,7 +2,8 @@
         xmlns="http://www.w3.org/1999/xhtml"
         xmlns:h="http://java.sun.com/jsf/html"
         xmlns:ui="http://java.sun.com/jsf/facelets"
-        xmlns:p="http://primefaces.org/ui">
+        xmlns:p="http://primefaces.org/ui"
+        xmlns:f="http://java.sun.com/jsf/core">
     <!--
  * Licensed to the Apache Software Foundation (ASF) under one or more
  * contributor license agreements.  See the NOTICE file distributed with
@@ -30,10 +31,19 @@
             </div>
         </div>
         <h:form>
-            <p:commandButton action="dashboard" value="Dashboard" icon="fa fa-dashboard" />
-            <p:commandButton action="login" value="Login" icon="fa fa-key" />
-            <p:commandButton action="/metrics" icon="fa fa-line-chart" value="Metrics"/>
-            <p:commandButton action="/rs/accounts/v1?_wadl" icon="fa fa-gear" value="Accounts WADL" />
+            <p:toolbar>
+                <f:facet name="left">
+                    <p:commandButton action="dashboard" value="Dashboard" icon="fa fa-dashboard" />
+                    <p:button onclick="window.open('${request.contextPath}/metrics')"
+                              value="Raw Metrics" icon="fa fa-line-chart" />
+                    <p:button onclick="window.open('${request.contextPath}/rs/accounts/v1?_wadl')"
+                              value="Acounts WADL"
+                              icon="fa fa-gear"/>
+                </f:facet>
+                <f:facet name="right">
+                    <p:commandButton action="login" value="Login" icon="fa fa-key" />
+                </f:facet>
+            </p:toolbar>
         </h:form>
         <p:spacer height="5" />
     </header>
