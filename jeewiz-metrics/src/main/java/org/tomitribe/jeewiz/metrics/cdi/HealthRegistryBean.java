@@ -17,7 +17,7 @@
 package org.tomitribe.jeewiz.metrics.cdi;
 
 import com.codahale.metrics.health.HealthCheckRegistry;
-import org.tomitribe.jeewiz.metrics.qualifiers.QHealthMetricRegistry;
+import org.tomitribe.jeewiz.metrics.qualifiers.JEEWizHealthMetricRegistry;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.context.spi.CreationalContext;
@@ -50,7 +50,7 @@ final class HealthRegistryBean implements Bean<HealthCheckRegistry>, Passivation
     private final Set<Annotation> qualifiers = new HashSet<>(Arrays.<Annotation>asList(
         new AnnotationLiteral<Any>(){},
         new AnnotationLiteral<Default>(){},
-        new AnnotationLiteral<QHealthMetricRegistry>(){}));
+        new AnnotationLiteral<JEEWizHealthMetricRegistry>(){}));
 
     private final Set<Type> types;
 

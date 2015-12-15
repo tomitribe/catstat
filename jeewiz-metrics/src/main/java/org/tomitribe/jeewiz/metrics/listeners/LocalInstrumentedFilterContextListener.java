@@ -18,7 +18,7 @@ package org.tomitribe.jeewiz.metrics.listeners;
 
 import com.codahale.metrics.MetricRegistry;
 import com.codahale.metrics.servlet.InstrumentedFilterContextListener;
-import org.tomitribe.jeewiz.metrics.qualifiers.QMetricRegistry;
+import org.tomitribe.jeewiz.metrics.qualifiers.JEEWizMetricRegistry;
 
 import javax.inject.Inject;
 import javax.servlet.annotation.WebListener;
@@ -31,7 +31,7 @@ import javax.servlet.annotation.WebListener;
  */
 @WebListener
 public class LocalInstrumentedFilterContextListener extends InstrumentedFilterContextListener {
-    @Inject @QMetricRegistry
+    @Inject @JEEWizMetricRegistry
     private MetricRegistry metricRegistry;
 
     @Override

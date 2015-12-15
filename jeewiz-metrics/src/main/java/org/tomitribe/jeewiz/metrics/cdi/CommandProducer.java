@@ -26,9 +26,9 @@ import org.tomitribe.jeewiz.metrics.commands.MeterCommand;
 import org.tomitribe.jeewiz.metrics.commands.NamingStrategy;
 import org.tomitribe.jeewiz.metrics.commands.TimerStartCommand;
 import org.tomitribe.jeewiz.metrics.commands.TimerStopCommand;
-import org.tomitribe.jeewiz.metrics.qualifiers.QNamingStrategy;
-import org.tomitribe.jeewiz.metrics.qualifiers.QPostExecuteChain;
-import org.tomitribe.jeewiz.metrics.qualifiers.QPreExecuteChain;
+import org.tomitribe.jeewiz.metrics.qualifiers.JEEWizNamingStrategy;
+import org.tomitribe.jeewiz.metrics.qualifiers.JEEWizPostExecuteChain;
+import org.tomitribe.jeewiz.metrics.qualifiers.JEEWizPreExecuteChain;
 
 import javax.enterprise.inject.Instance;
 import javax.enterprise.inject.Produces;
@@ -49,14 +49,14 @@ public class CommandProducer {
 
     @Produces
     @Singleton
-    @QNamingStrategy
+    @JEEWizNamingStrategy
     private NamingStrategy getNamingStrategy() {
         return new DefaultNamingStrategy();
     }
 
     @Produces
     @Singleton
-    @QPreExecuteChain
+    @JEEWizPreExecuteChain
     public Chain getPreExecuteChain() {
         Chain c = chainInstance.get();
         c.addCommand(new CounterIncrementCommand());
@@ -68,7 +68,7 @@ public class CommandProducer {
 
     @Produces
     @Singleton
-    @QPostExecuteChain
+    @JEEWizPostExecuteChain
     public Chain getPostExecureChain() {
         Chain c = chainInstance.get();
         c.addCommand(new CounterDecrementCommand());

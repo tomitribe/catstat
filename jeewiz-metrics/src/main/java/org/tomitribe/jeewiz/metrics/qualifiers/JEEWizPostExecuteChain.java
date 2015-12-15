@@ -14,28 +14,26 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package org.tomitribe.jeewiz.metrics.listeners;
+package org.tomitribe.jeewiz.metrics.qualifiers;
 
-import com.codahale.metrics.health.HealthCheckRegistry;
-import com.codahale.metrics.servlets.HealthCheckServlet;
-import org.tomitribe.jeewiz.metrics.qualifiers.JEEWizHealthMetricRegistry;
+import javax.inject.Qualifier;
+import java.lang.annotation.Retention;
+import java.lang.annotation.Target;
 
-import javax.inject.Inject;
-import javax.servlet.annotation.WebListener;
+import static java.lang.annotation.ElementType.FIELD;
+import static java.lang.annotation.ElementType.METHOD;
+import static java.lang.annotation.ElementType.PARAMETER;
+import static java.lang.annotation.ElementType.TYPE;
+import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
 /**
  * @author WalmartLabs
  * @author Tomitribe
  * @author Ryan McGuinness [rmcguinness@walmartlabs.com]
- *         Created: 5/16/15
+ *         Created: 5/19/15
  */
-@WebListener
-public class HealthCheckServletContextListener extends HealthCheckServlet.ContextListener {
-    @Inject @JEEWizHealthMetricRegistry
-    private HealthCheckRegistry healthCheckRegistry;
-
-    @Override
-    protected HealthCheckRegistry getHealthCheckRegistry() {
-        return healthCheckRegistry;
-    }
+@Qualifier
+@Retention(RUNTIME)
+@Target({TYPE, METHOD, FIELD, PARAMETER })
+public @interface JEEWizPostExecuteChain {
 }

@@ -14,28 +14,21 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package org.tomitribe.jeewiz.metrics.listeners;
+package org.tomitribe.jeewiz.metrics;
 
-import com.codahale.metrics.health.HealthCheckRegistry;
-import com.codahale.metrics.servlets.HealthCheckServlet;
-import org.tomitribe.jeewiz.metrics.qualifiers.JEEWizHealthMetricRegistry;
-
-import javax.inject.Inject;
-import javax.servlet.annotation.WebListener;
+import org.jboss.arquillian.junit.Arquillian;
+import org.junit.Test;
+import org.junit.runner.RunWith;
 
 /**
  * @author WalmartLabs
- * @author Tomitribe
  * @author Ryan McGuinness [rmcguinness@walmartlabs.com]
- *         Created: 5/16/15
+ *         Created: 12/14/15
  */
-@WebListener
-public class HealthCheckServletContextListener extends HealthCheckServlet.ContextListener {
-    @Inject @JEEWizHealthMetricRegistry
-    private HealthCheckRegistry healthCheckRegistry;
-
-    @Override
-    protected HealthCheckRegistry getHealthCheckRegistry() {
-        return healthCheckRegistry;
+@RunWith(Arquillian.class)
+public class LoaderTest extends ArquillianTest {
+    @Test
+    public void testLoader() {
+        System.out.println("Testing");
     }
 }

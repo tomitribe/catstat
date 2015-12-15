@@ -21,7 +21,7 @@ import com.codahale.metrics.jvm.FileDescriptorRatioGauge;
 import com.codahale.metrics.jvm.GarbageCollectorMetricSet;
 import com.codahale.metrics.jvm.MemoryUsageGaugeSet;
 import com.codahale.metrics.jvm.ThreadStatesGaugeSet;
-import org.tomitribe.jeewiz.metrics.qualifiers.QMetricRegistry;
+import org.tomitribe.jeewiz.metrics.qualifiers.JEEWizMetricRegistry;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.context.spi.CreationalContext;
@@ -56,7 +56,7 @@ final class MetricRegistryBean implements Bean<MetricRegistry>, PassivationCapab
     private final Set<Annotation> qualifiers = new HashSet<>(Arrays.<Annotation>asList(
         new AnnotationLiteral<Any>(){},
         new AnnotationLiteral<Default>(){},
-        new AnnotationLiteral<QMetricRegistry>(){}));
+        new AnnotationLiteral<JEEWizMetricRegistry>(){}));
 
     private final Set<Type> types;
 

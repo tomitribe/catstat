@@ -24,10 +24,10 @@ import org.tomitribe.jeewiz.metrics.annotations.MetricAware;
 import org.tomitribe.jeewiz.metrics.commands.Chain;
 import org.tomitribe.jeewiz.metrics.commands.Command;
 import org.tomitribe.jeewiz.metrics.commands.NamingStrategy;
-import org.tomitribe.jeewiz.metrics.qualifiers.QMetricRegistry;
-import org.tomitribe.jeewiz.metrics.qualifiers.QNamingStrategy;
-import org.tomitribe.jeewiz.metrics.qualifiers.QPostExecuteChain;
-import org.tomitribe.jeewiz.metrics.qualifiers.QPreExecuteChain;
+import org.tomitribe.jeewiz.metrics.qualifiers.JEEWizMetricRegistry;
+import org.tomitribe.jeewiz.metrics.qualifiers.JEEWizNamingStrategy;
+import org.tomitribe.jeewiz.metrics.qualifiers.JEEWizPostExecuteChain;
+import org.tomitribe.jeewiz.metrics.qualifiers.JEEWizPreExecuteChain;
 
 import javax.inject.Inject;
 import javax.interceptor.AroundInvoke;
@@ -46,19 +46,19 @@ import javax.interceptor.InvocationContext;
 public class MetricInterceptor {
     private static final Logger LOG = LoggerFactory.getLogger(MetricInterceptor.class);
     @Inject
-    @QMetricRegistry
+    @JEEWizMetricRegistry
     private MetricRegistry metricRegistry;
 
     @Inject
-    @QPreExecuteChain
+    @JEEWizPreExecuteChain
     private Chain preExecutionChain;
 
     @Inject
-    @QPostExecuteChain
+    @JEEWizPostExecuteChain
     private Chain postExecutionChain;
 
     @Inject
-    @QNamingStrategy
+    @JEEWizNamingStrategy
     private NamingStrategy namingStrategy;
 
     private void prepareContext(InvocationContext context) {
